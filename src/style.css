@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+:root {
+  --main-bg: #e8ecf2;
+  --light-shadow: -5px -5px 10px rgba(255, 255, 255, 0.8);
+  --dark-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+  --light-shadow-color: rgba(255, 255, 255, 0.8);
+  --dark-shadow-color: rgba(0, 0, 0, 0.25);
+  --secondary-font: #0000ff;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Sriracha', cursive;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  min-height: 100vh;
+  background-color: var(--main-bg);
+}
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  text-align: center;
+}
+.container {
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+  background-color: var(--main-bg);
+  box-shadow: var(--light-shadow), var(--dark-shadow);
+}
+.name-form {
+  width: 100%;
+}
+.city-name-input,
+.geo-btn {
+  border: 4px solid var(--main-bg);
+  padding: 5px 20px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 50px;
+  box-shadow: var(--light-shadow), var(--dark-shadow);
+}
+.city-name-input {
+  background-color: var(--light-shadow-color);
+  outline: none;
+}
+.city-name-input:focus {
+  border: 3px solid var(--dark-shadow-color);
+}
+.city-name-button {
+  color: var(--secondary-font);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 28px;
+  position: absolute;
+  transform: translate(-160%, 0%);
+}
+.geo-btn {
+  gap: 10px;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 250ms;
+  background-color: var(--main-bg);
+}
+.geo-btn:hover {
+  color: var(--secondary-font);
+  box-shadow: -1px -1px 5px rgba(255, 255, 255, 0.6),
+    1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.geo-btn:active {
+  box-shadow: -1px -1px 5px rgba(255, 255, 255, 0.6),
+    1px 1px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 1),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+}

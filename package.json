@@ -1,7 +1,7 @@
 {
-  "name": "the-budget-app",
+  "name": "weather-app",
   "version": "1.0.0",
-  "description": "budget webpack project",
+  "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/I-Maged/The-Budget-App.git"
+    "url": "git+https://github.com/I-Maged/Weather-App.git"
   },
   "author": "Maged",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/I-Maged/The-Budget-App/issues"
+    "url": "https://github.com/I-Maged/Weather-App/issues"
   },
-  "homepage": "https://github.com/I-Maged/The-Budget-App#readme",
+  "homepage": "https://github.com/I-Maged/Weather-App#readme",
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
@@ -27,8 +27,5 @@
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
-  },
-  "dependencies": {
-    "uuid": "^9.0.0"
   }
 }

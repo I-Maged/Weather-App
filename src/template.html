@@ -6,5 +6,19 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
-  <body></body>
+  <body class="flex">
+    <main class="container flex">
+      <h1>The Weather app</h1>
+      <div class="name-form felx">
+        <input
+          type="text"
+          class="city-name-input"
+          placeholder="Enter City Name"
+        />
+        <button class="city-name-button">&#8594;</button>
+      </div>
+      <h2>&#8211; or &#8211;</h2>
+      <button class="geo-btn flex">Get Current Location</button>
+    </main>
+  </body>
 </html>

@@ -1,21 +1,24 @@
 import './style.css';
 
-const options = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': process.env.CITIES_API,
-    'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-  },
-};
+const cityNameInput = document.querySelector('.city-name-input');
 
-const getWeatherBycityName = async () => {
+cityNameInput.addEventListener('keydown', (e) => {
+  if (e.code === 'Enter') {
+    getWeatherBycityName();
+  }
+});
+
+document
+  .querySelector('.city-name-button')
+  .addEventListener('click', getWeatherBycityName);
+
+async function getWeatherBycityName() {
+  const cityName = cityNameInput.value;
+
   const res = await fetch(
-    'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=0&limit=5&types=CITY&namePrefix=new&sort=-population',
-    options
+    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.OWM_API}&units=metric`
   );
   console.log(res.status); //200 = success
   let data = await res.json();
   console.log(data);
-};
-
-getWeatherBycityName();
+}

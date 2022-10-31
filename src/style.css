@@ -16,7 +16,9 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Sriracha', cursive;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
 }
 
 .flex {
@@ -88,18 +90,4 @@ h3 {
   box-shadow: -1px -1px 5px rgba(255, 255, 255, 0.6),
     1px 1px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 1),
     inset 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-#suggestions {
-  list-style: none;
-  margin: 0 20px;
-  position: absolute;
-  width: 70%;
-  max-width: 350px;
-  background-color: var(--main-bg);
-}
-#suggestions li {
-  border: 1px solid var(--dark-shadow-color);
-  font-size: 18px;
-  padding: 5px;
-  cursor: pointer;
 }

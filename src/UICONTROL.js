@@ -4,6 +4,8 @@ const setDom = {
   nameField: document.querySelector('.city-name-input'),
   nameBtn: document.querySelector('.city-name-button'),
   geoBtn: document.querySelector('.geo-btn'),
+  displayLocation: document.querySelector('.display-location'),
+  displayWeather: document.querySelector('.display-weather'),
 };
 
 function getCoordinates() {
@@ -14,8 +16,6 @@ function getCoordinates() {
   }
 
   function error() {
-    // clearDisplay();
-    // displayError.textContent = 'Geolocation is disabled on this device';
     console.log('blocked');
   }
 
@@ -36,7 +36,40 @@ function getCityName() {
 }
 
 function displayWeather(data) {
-  console.log(data);
+  const { name } = data;
+  const { country } = data.sys;
+  const { icon, main } = data.weather[0];
+  const { temp } = data.main;
+  const ferhTemp = (temp * 9) / 5 + 32;
+
+  setDom.displayLocation.innerHTML = `Weather in ${name}, ${country}`;
+
+  const weatherEl = document.createElement('div');
+  weatherEl.innerHTML = `<div class="display-container">
+  <div class="data-section flex current">${Math.floor(temp)} C</div>
+        <div class="data-section">
+          <img
+            src="http://openweathermap.org/img/wn/${icon}@2x.png"
+            class="icon"
+          />
+          <h4>${main}</h4>
+        </div>
+        <button class="units-btn flex">Metric</button>
+        </div>`;
+
+  setDom.displayWeather.appendChild(weatherEl);
+
+  document.querySelector('.units-btn').addEventListener('click', (e) => {
+    if (e.target.innerHTML == 'Metric') {
+      e.target.innerHTML = 'Imperial';
+      document.querySelector('.current').innerHTML = `${Math.floor(
+        ferhTemp
+      )} F`;
+    } else if (e.target.innerHTML == 'Imperial') {
+      e.target.innerHTML = 'Metric';
+      document.querySelector('.current').innerHTML = `${Math.floor(temp)} F`;
+    }
+  });
 }
 
 export { setDom, getCoordinates, getCityName, displayWeather };

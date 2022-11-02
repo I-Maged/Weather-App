@@ -109,6 +109,12 @@ h4 {
   gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
+.display-days {
+  margin-top: 15px;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
 .display-weather,
 .display-weather:first-child {
   width: 100%;
@@ -129,4 +135,8 @@ h4 {
 }
 .units-btn {
   max-height: 55px;
+}
+.day1-temp,
+.day2-temp {
+  flex-basis: 50%;
 }

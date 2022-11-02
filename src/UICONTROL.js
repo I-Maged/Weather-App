@@ -117,7 +117,7 @@ const displayWeather = (current, forecast) => {
   <div class="data-section flex current">${Math.round(temp)} C</div>
         <div class="data-section">
           <img
-            src="http://openweathermap.org/img/wn/${icon}@2x.png"
+            src="https://openweathermap.org/img/wn/${icon}@2x.png"
             class="icon"
           />
           <h4>${main}</h4>
@@ -131,7 +131,7 @@ const displayWeather = (current, forecast) => {
             <div class="day1-temp">${Math.round(day1_temp)} C</div>
             <div>
               <img
-                src="http://openweathermap.org/img/wn/${day1_icon}@2x.png"
+                src="https://openweathermap.org/img/wn/${day1_icon}@2x.png"
                 class="icon"
               />
               <h5>${day1_description}</h5>
@@ -144,7 +144,7 @@ const displayWeather = (current, forecast) => {
             <div class="day2-temp">${Math.round(day2_temp)} C</div>
             <div>
               <img
-                src="http://openweathermap.org/img/wn/${day2_icon}@2x.png"
+                src="https://openweathermap.org/img/wn/${day2_icon}@2x.png"
                 class="icon"
               />
               <h5>${day2_description}</h5>

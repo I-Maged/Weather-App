@@ -1,12 +1,18 @@
-import { setDom, getCoordinates, getCityName } from './UICONTROL';
+import { setDom, getCoordinates, getCityName, clearDisplay } from './UICONTROL';
 import './style.css';
 
-setDom.geoBtn.addEventListener('click', getCoordinates);
+const startApp = () => {
+  clearDisplay();
 
-setDom.nameBtn.addEventListener('click', getCityName);
+  setDom.geoBtn.addEventListener('click', getCoordinates);
 
-setDom.nameField.addEventListener('keydown', (e) => {
-  if (e.code === 'Enter') {
-    getCityName();
-  }
-});
+  setDom.nameBtn.addEventListener('click', getCityName);
+
+  setDom.nameField.addEventListener('keydown', (e) => {
+    if (e.code === 'Enter') {
+      getCityName();
+    }
+  });
+};
+
+startApp();

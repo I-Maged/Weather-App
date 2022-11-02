@@ -1,5 +1,6 @@
 import { fetchWeatherData } from './APICONTROL';
 
+//DOM elements
 const setDom = {
   nameField: document.querySelector('.city-name-input'),
   nameBtn: document.querySelector('.city-name-button'),
@@ -10,27 +11,33 @@ const setDom = {
   locationError: document.querySelector('.location-error'),
 };
 
-function getCoordinates() {
-  function success(position) {
+// Get location from device
+const getCoordinates = () => {
+  // successfully got location
+  const success = (position) => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
     fetchWeatherData([lat, lon], 'coords');
-  }
+  };
 
-  function error() {
+  // location is disabled
+  const error = () => {
     clearDisplay();
     setDom.locationError.style.display = 'block';
-  }
+  };
 
+  //method and options
   navigator.geolocation.getCurrentPosition(success, error, {
     maximumAge: 10000,
     timeout: 5000,
     enableHighAccuracy: true,
   });
-}
+};
 
+//get city name input from UI
 function getCityName() {
+  //check if city name has letters
   if (!/[a-zA-Z]/.test(setDom.nameField.value)) {
     clearDisplay();
     setDom.cityError.style.display = 'block';
@@ -47,6 +54,7 @@ const clearDisplay = () => {
   setDom.locationError.style.display = 'none';
 };
 
+//method to show days of the week
 const weekday = (value) => {
   const weekdays = [
     'Sunday',
@@ -58,41 +66,52 @@ const weekday = (value) => {
     'Saturday',
   ];
 
-  if (value > 7) {
-    value = -7;
+  if (value > 6) {
+    value = value - 7;
   }
 
   return weekdays[value];
 };
 
-function displayWeather(current, forecast) {
+// display Weather data
+const displayWeather = (current, forecast) => {
   clearDisplay();
+
+  //check for errors in weather or forecast responses
   if (current.cod != 200 || forecast.cod != 200) {
     setDom.cityError.style.display = 'block';
     return;
   }
 
+  //responses don't have errors
   // current weather
+  //city name
   const { name } = current;
+  //country code
   const { country } = current.sys;
+  //icon and description
   const { icon, main } = current.weather[0];
+  //temp in celsius
   const { temp } = current.main;
+  //temp in fahrenheit
   const ferhTemp = (temp * 9) / 5 + 32;
-  // tomorrow
+  // tomorrow (forecast API)
   const day1 = weekday(new Date().getDay() + 1);
   const day1_icon = forecast.list[8].weather[0].icon;
   const day1_description = forecast.list[8].weather[0].main;
   const day1_temp = forecast.list[8].main.temp;
   const day1_ferhTemp = (day1_temp * 9) / 5 + 32;
-  // day after
+  // day after (forecast API)
   const day2 = weekday(new Date().getDay() + 2);
   const day2_icon = forecast.list[16].weather[0].icon;
   const day2_description = forecast.list[16].weather[0].main;
   const day2_temp = forecast.list[16].main.temp;
   const day2_ferhTemp = (day2_temp * 9) / 5 + 32;
 
+  //display fetched location
   setDom.displayLocation.innerHTML = `Weather in ${name}, ${country}`;
 
+  //display fetched data from weather & forecast APIs
   const weatherEl = document.createElement('div');
   weatherEl.innerHTML = `<div class="display-container">
   <div class="data-section flex current">${Math.round(temp)} C</div>
@@ -136,6 +155,7 @@ function displayWeather(current, forecast) {
 
   setDom.displayWeather.appendChild(weatherEl);
 
+  //change between celsius and fahrenheit with button click
   document.querySelector('.units-btn').addEventListener('click', (e) => {
     if (e.target.innerHTML == 'Metric') {
       e.target.innerHTML = 'Imperial';
@@ -159,6 +179,6 @@ function displayWeather(current, forecast) {
       )} C`;
     }
   });
-}
+};
 
-export { setDom, getCoordinates, getCityName, displayWeather };
+export { setDom, getCoordinates, getCityName, displayWeather, clearDisplay };

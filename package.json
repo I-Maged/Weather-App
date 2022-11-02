@@ -1,7 +1,7 @@
 {
   "name": "weather-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Weather App",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",

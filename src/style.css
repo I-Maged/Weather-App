@@ -140,3 +140,13 @@ h4 {
 .day2-temp {
   flex-basis: 50%;
 }
+.city-error {
+  margin-top: 15px;
+}
+.city-error,
+.location-error {
+  font-size: 18px;
+  text-align: center;
+  color: #ff0000;
+  display: none;
+}

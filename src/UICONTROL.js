@@ -6,6 +6,8 @@ const setDom = {
   geoBtn: document.querySelector('.geo-btn'),
   displayLocation: document.querySelector('.display-location'),
   displayWeather: document.querySelector('.display-weather'),
+  cityError: document.querySelector('.city-error'),
+  locationError: document.querySelector('.location-error'),
 };
 
 function getCoordinates() {
@@ -17,7 +19,8 @@ function getCoordinates() {
   }
 
   function error() {
-    console.log('blocked');
+    clearDisplay();
+    setDom.locationError.style.display = 'block';
   }
 
   navigator.geolocation.getCurrentPosition(success, error, {
@@ -29,8 +32,8 @@ function getCoordinates() {
 
 function getCityName() {
   if (!/[a-zA-Z]/.test(setDom.nameField.value)) {
-    setDom.nameField.value = '';
-    console.log('empty field');
+    clearDisplay();
+    setDom.cityError.style.display = 'block';
   } else {
     fetchWeatherData(setDom.nameField.value, 'cityName');
   }
@@ -40,6 +43,8 @@ const clearDisplay = () => {
   setDom.nameField.value = '';
   setDom.displayLocation.innerHTML = '';
   setDom.displayWeather.innerHTML = '';
+  setDom.cityError.style.display = 'none';
+  setDom.locationError.style.display = 'none';
 };
 
 const weekday = (value) => {
@@ -63,7 +68,7 @@ const weekday = (value) => {
 function displayWeather(current, forecast) {
   clearDisplay();
   if (current.cod != 200 || forecast.cod != 200) {
-    console.log('error');
+    setDom.cityError.style.display = 'block';
     return;
   }
 
